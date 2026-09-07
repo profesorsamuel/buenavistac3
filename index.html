@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Jiral de Colón — Portal Comunitario</title>
+
+<!--
+  ================================================================
+  GUÍA RÁPIDA PARA LOS ESTUDIANTES QUE VAN A EDITAR ESTA PÁGINA
+  ================================================================
+  1. Busca los bloques marcados con  <!-- EDITAR AQUÍ -->  arriba
+     de cada sección. Ahí va la información real de la comunidad.
+  2. Los recuadros con el sello "🔧 En construcción" son textos
+     de ejemplo. Reemplácenlos por la información verdadera y
+     borren el sello cuando la sección esté lista (busquen la
+     clase  class="borrador"  y quítenla del elemento).
+  3. No es necesario tocar nada dentro de <style> ni <script>
+     salvo que su profesor(a) lo indique.
+  4. Para agregar una foto a la galería, dupliquen un bloque
+     <figure> dentro de la sección "Galería" y cambien el src
+     de la imagen y el texto del pie de foto.
+  ================================================================
+-->
+
+<style>
+  :root{
+    --verde-monte: #1e3b2c;
+    --verde-monte-osc: #142a1f;
+    --papel: #f7f3e6;
+    --papel-osc: #efe8d4;
+    --oro: #c98a2b;
+    --oro-suave: #e3b866;
+    --ladrillo: #7a3428;
+    --tinta: #26201a;
+    --tinta-suave: #57503f;
+    --borde: rgba(38,32,26,0.14);
+    font-size: 17px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: "Work Sans", "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+
+  h1,h2,h3, .display{
+    font-family: "Fraunces", Georgia, serif;
+    color: var(--verde-monte);
+    line-height: 1.08;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Sello de borrador ---------- */
+  .borrador{ position: relative; }
+  .borrador::before{
+    content: "🔧 En construcción — texto de ejemplo";
+    display: inline-block;
+    font-size: 0.72rem;
+    background: var(--oro-suave);
+    color: var(--verde-monte-osc);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    font-family: "Work Sans", sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    background: var(--verde-monte);
+    color: var(--papel);
+    position: sticky;
+    top:0;
+    z-index: 50;
+    border-bottom: 3px solid var(--oro);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 14px 0;
+    gap: 20px;
+  }
+  .marca{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .marca svg{ flex-shrink:0; }
+  .marca-texto{ display:flex; flex-direction:column; }
+  .marca-texto strong{
+    font-family:"Fraunces", serif;
+    font-size:1.28rem;
+    letter-spacing:0.01em;
+  }
+  .marca-texto span{
+    font-size:0.72rem;
+    color: var(--oro-suave);
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 4px 2px;
+    margin:0; padding:0;
+  }
+  nav a{
+    text-decoration:none;
+    color: var(--papel);
+    font-size:0.92rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background .15s ease;
+  }
+  nav a:hover{ background: rgba(255,255,255,0.12); }
+  #menu-toggle{ display:none; }
+  .hamburguesa{
+    display:none;
+    background:none; border:none; color:var(--papel);
+    font-size:1.6rem; cursor:pointer; line-height:1;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background: linear-gradient(180deg, var(--verde-monte) 0%, var(--verde-monte-osc) 100%);
+    color: var(--papel);
+    padding: 74px 0 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    color: var(--oro-suave);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  .hero h1{
+    color: var(--papel);
+    font-size: clamp(2.5rem, 5vw, 3.6rem);
+    max-width: 12ch;
+  }
+  .hero p.lead{
+    margin-top: 20px;
+    max-width: 46ch;
+    color: #dfe6de;
+    font-size: 1.08rem;
+  }
+  .hero-badges{
+    display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;
+  }
+  .hero-badges div{
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--oro-suave);
+  }
+  .hero-art{ display:flex; justify-content:center; }
+
+  /* ---------- Contenedor de sección genérico ---------- */
+  section{ padding: 74px 0; border-bottom: 1px solid var(--borde); }
+  section.oscuro{
+    background: var(--verde-monte);
+    color: var(--papel);
+    border-bottom: none;
+  }
+  section.oscuro h2{ color: var(--papel); }
+  section.oscuro .kicker{ color: var(--oro-suave); }
+
+  .kicker{
+    color: var(--ladrillo);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display:block;
+  }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 44px;
+  }
+  .section-head h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); }
+  .section-head p{ margin-top: 14px; color: var(--tinta-suave); }
+
+  /* ---------- Historia: timeline ---------- */
+  .linea-tiempo{
+    border-left: 2px solid var(--oro);
+    margin-left: 8px;
+    padding-left: 30px;
+    display:flex;
+    flex-direction:column;
+    gap: 34px;
+  }
+  .hito{ position:relative; }
+  .hito::before{
+    content:"";
+    position:absolute;
+    left:-37px; top:4px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background: var(--oro);
+    border: 3px solid var(--papel);
+  }
+  .hito time{ font-size: 0.85rem; color: var(--ladrillo); }
+  .hito h3{ font-size:1.15rem; margin-top:4px; }
+  .hito p{ margin-top:6px; color: var(--tinta-suave); max-width: 60ch; }
+
+  /* ---------- Grid de indicadores (social) ---------- */
+  .indicadores{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1px;
+    background: var(--borde);
+    border: 1px solid var(--borde);
+  }
+  .indicador{
+    background: var(--papel);
+    padding: 26px 22px;
+  }
+  .indicador .num{
+    font-family:"Fraunces", serif;
+    font-size: 2.1rem;
+    color: var(--verde-monte);
+  }
+  .indicador .etiqueta{
+    color: var(--tinta-suave);
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  /* ---------- Dos columnas con lista ---------- */
+  .dos-col{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+  }
+  .dos-col .col-label{
+    font-family:"Fraunces", serif;
+    font-size:1.4rem;
+    color: var(--verde-monte);
+  }
+  .lista-detalle{ list-style:none; margin:0; padding:0; }
+  .lista-detalle li{
+    padding: 18px 0;
+    border-top: 1px solid var(--borde);
+    display:grid;
+    grid-template-columns: 160px 1fr;
+    gap: 18px;
+  }
+  .lista-detalle li:last-child{ border-bottom: 1px solid var(--borde); }
+  .lista-detalle strong{ color: var(--verde-monte); }
+  .lista-detalle span{ color: var(--tinta-suave); }
+
+  /* ---------- Tarjetas económicas ---------- */
+  .tarjetas-economia{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+  }
+  .tarjeta-eco{
+    padding: 26px;
+    background: var(--papel-osc);
+    border-left: 4px solid var(--oro);
+  }
+  .tarjeta-eco h3{ font-size: 1.1rem; }
+  .tarjeta-eco p{ margin-top:10px; color: var(--tinta-suave); font-size:0.95rem; }
+
+  /* ---------- Cultura ---------- */
+  .cultura-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 26px;
+  }
+  .cultura-item h3{ font-size:1.05rem; }
+  .cultura-item p{ color: var(--tinta-suave); margin-top:8px; font-size:0.95rem; }
+  .cultura-item .marca-linea{ width:36px; height:3px; background:var(--oro); margin-bottom:14px; }
+
+  /* ---------- Galería ---------- */
+  .galeria{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 18px;
+  }
+  figure{ margin:0; }
+  .foto-vacia{
+    aspect-ratio: 4/3;
+    background: repeating-linear-gradient(135deg, var(--papel-osc), var(--papel-osc) 10px, #e7ddc2 10px, #e7ddc2 20px);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--tinta-suave);
+    font-size:0.85rem;
+    text-align:center;
+    padding: 12px;
+    border: 1px dashed var(--oro);
+  }
+  figcaption{ font-size:0.85rem; color: var(--tinta-suave); margin-top:8px; }
+
+  /* ---------- Noticias ---------- */
+  .noticias{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 24px;
+  }
+  .noticia{
+    background: var(--papel);
+    border: 1px solid var(--borde);
+    padding: 24px;
+  }
+  .noticia time{ font-size:0.8rem; color: var(--ladrillo); }
+  .noticia h3{ font-size:1.05rem; margin-top:8px; }
+  .noticia p{ margin-top:8px; font-size:0.92rem; color: var(--tinta-suave); }
+
+  /* ---------- Directorio ---------- */
+  table.directorio{
+    width:100%;
+    border-collapse: collapse;
+    font-size:0.95rem;
+  }
+  table.directorio th, table.directorio td{
+    text-align:left;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--borde);
+  }
+  table.directorio th{
+    color: var(--verde-monte);
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:1rem;
+  }
+
+  /* ---------- Participa ---------- */
+  .participa-caja{
+    background: var(--papel-osc);
+    padding: 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  form{ display:flex; flex-direction:column; gap:14px; }
+  form label{ font-size:0.85rem; color: var(--tinta-suave); }
+  form input, form textarea, form select{
+    padding: 11px 12px;
+    border: 1px solid var(--borde);
+    background: var(--papel);
+    font-family: inherit;
+    font-size: 0.95rem;
+    border-radius: 3px;
+  }
+  form button{
+    align-self:flex-start;
+    background: var(--verde-monte);
+    color: var(--papel);
+    border:none;
+    padding: 12px 26px;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    cursor:pointer;
+    transition: background .15s ease;
+  }
+  form button:hover{ background: var(--verde-monte-osc); }
+  .nota-form{
+    font-size:0.82rem;
+    color: var(--tinta-suave);
+    margin-top: 6px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--verde-monte-osc);
+    color: #cfd6cc;
+    padding: 46px 0 30px;
+    font-size: 0.88rem;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 20px;
+  }
+  footer a{ color: var(--oro-suave); text-decoration:none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .hero-art{ order:-1; }
+    .dos-col{ grid-template-columns: 1fr; gap: 26px; }
+    .participa-caja{ grid-template-columns: 1fr; }
+    .lista-detalle li{ grid-template-columns: 1fr; gap:4px; }
+  }
+  @media (max-width: 720px){
+    nav{
+      position:absolute; top:100%; left:0; right:0;
+      background: var(--verde-monte);
+      flex-direction:column;
+      display:none;
+      border-bottom: 3px solid var(--oro);
+    }
+    #menu-toggle:checked ~ nav{ display:block; }
+    nav ul{ flex-direction:column; padding: 10px 20px 20px; }
+    .hamburguesa{ display:block; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="marca">
+      <svg width="38" height="38" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4C15 14 8 22 8 31a16 16 0 0 0 32 0c0-9-7-17-16-27Z" fill="#c98a2b"/>
+        <path d="M24 14c-5 6-9 11-9 17a9 9 0 0 0 18 0c0-6-4-11-9-17Z" fill="#1e3b2c"/>
+      </svg>
+      <div class="marca-texto">
+        <strong>El Jiral</strong>
+        <span>Portal comunitario · Colón</span>
+      </div>
+    </div>
+
+    <input type="checkbox" id="menu-toggle">
+    <label class="hamburguesa" for="menu-toggle">☰</label>
+
+    <nav>
+      <ul>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#social">Social</a></li>
+        <li><a href="#economia">Económico</a></li>
+        <li><a href="#ambiente">Ambiente</a></li>
+        <li><a href="#cultura">Cultura</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#directorio">Directorio</a></li>
+        <li><a href="#participa">Participa</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="border-bottom:none; padding-bottom:74px;">
+  <div class="wrap">
+    <div>
+      <span class="hero-eyebrow">Corregimiento de El Jiral, provincia de Colón</span>
+      <h1>Nuestra comunidad, contada por quienes la conocen mejor</h1>
+      <!-- EDITAR AQUÍ: descripción corta de la comunidad -->
+      <p class="lead">
+        Este portal reúne la historia, la vida social, la economía y la cultura
+        de El Jiral. Está siendo construido paso a paso por los propios
+        estudiantes que viven aquí, para que cualquier persona pueda conocer
+        de dónde venimos y cómo vivimos.
+      </p>
+      <div class="hero-badges">
+        <div>Un proyecto del C.E.B.G. El Jiral</div>
+        <div>Hecho por estudiantes de 8vo y 9no grado</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+        <circle cx="130" cy="130" r="128" stroke="#c98a2b" stroke-width="1.5" opacity="0.5"/>
+        <path d="M40 190 Q90 120 130 160 Q170 200 220 130" stroke="#e3b866" stroke-width="3" fill="none"/>
+        <path d="M60 60c20 0 32 18 30 42-24 4-46-10-48-30-1-8 8-12 18-12Z" fill="#7a3428" opacity="0.85"/>
+        <path d="M170 46c-24 4-38 26-32 50 26 0 46-16 46-38 0-8-6-13-14-12Z" fill="#c98a2b"/>
+        <circle cx="130" cy="150" r="10" fill="#f7f3e6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIÉNES SOMOS / HISTORIA ================= -->
+<section id="historia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Quiénes somos</span>
+      <h2>Historia y ubicación</h2>
+      <!-- EDITAR AQUÍ: 1-2 líneas de introducción a la historia -->
+      <p class="borrador">
+        El Jiral se ubica en la provincia de Colón. Aquí va una breve
+        descripción de cómo se formó la comunidad, quiénes fueron sus
+        primeros pobladores y qué la caracteriza hoy.
+      </p>
+    </div>
+
+    <!-- EDITAR AQUÍ: agreguen o quiten hitos según la historia real -->
+    <div class="linea-tiempo">
+      <div class="hito borrador">
+        <time>Año aproximado</time>
+        <h3>Fundación / primeros pobladores</h3>
+        <p>Cuenten aquí quiénes llegaron primero a la zona y por qué se establecieron en este lugar.</p>
+      </div>
+      <div class="hito borrador">
+        <time>Año aproximado</time>
+        <h3>Un hecho importante para la comunidad</h3>
+        <p>Por ejemplo: la construcción de la escuela, la llegada de la carretera, la electrificación, etc.</p>
+      </div>
+      <div class="hito borrador">
+        <time>Actualidad</time>
+        <h3>El Jiral hoy</h3>
+        <p>Describan brevemente cómo es la comunidad en la actualidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ASPECTO SOCIAL ================= -->
+<section id="social">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Aspecto social</span>
+      <h2>Población y servicios básicos</h2>
+      <p>Datos generales sobre quiénes vivimos aquí y con qué servicios contamos.</p>
+    </div>
+
+    <!-- EDITAR AQUÍ: reemplacen los números con datos reales (censo, junta comunal, encuestas) -->
+    <div class="indicadores borrador">
+      <div class="indicador">
+        <div class="num">—</div>
+        <div class="etiqueta">Habitantes aproximados</div>
+      </div>
+      <div class="indicador">
+        <div class="num">—</div>
+        <div class="etiqueta">Viviendas</div>
+      </div>
+      <div class="indicador">
+        <div class="num">—</div>
+        <div class="etiqueta">Estudiantes en el C.E.B.G. El Jiral</div>
+      </div>
+      <div class="indicador">
+        <div class="num">—</div>
+        <div class="etiqueta">% con agua potable</div>
+      </div>
+    </div>
+
+    <div class="dos-col" style="margin-top:52px;">
+      <div class="col-label">Lo esencial<br>de la comunidad</div>
+      <!-- EDITAR AQUÍ: describan cada renglón con la situación real -->
+      <ul class="lista-detalle borrador">
+        <li><strong>Educación</strong><span>Escuela(s) presentes en la comunidad, niveles que se ofrecen.</span></li>
+        <li><strong>Salud</strong><span>Puesto o centro de salud más cercano, distancia y servicios.</span></li>
+        <li><strong>Vivienda</strong><span>Tipo de vivienda predominante y materiales de construcción.</span></li>
+        <li><strong>Agua y saneamiento</strong><span>Fuente de agua, alcantarillado o letrinas, recolección de basura.</span></li>
+        <li><strong>Electricidad</strong><span>Cobertura eléctrica en la comunidad.</span></li>
+        <li><strong>Transporte</strong><span>Cómo se mueve la gente dentro y fuera de la comunidad.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ASPECTO ECONÓMICO ================= -->
+<section id="economia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Aspecto económico</span>
+      <h2>De qué vivimos</h2>
+      <p>Las actividades que sostienen económicamente a las familias de El Jiral.</p>
+    </div>
+
+    <!-- EDITAR AQUÍ: agreguen/quiten tarjetas según las actividades reales -->
+    <div class="tarjetas-economia borrador">
+      <div class="tarjeta-eco">
+        <h3>Agricultura</h3>
+        <p>Principales cultivos de la zona y su destino (consumo propio o venta).</p>
+      </div>
+      <div class="tarjeta-eco">
+        <h3>Ganadería</h3>
+        <p>Tipo de crianza de animales presente en la comunidad.</p>
+      </div>
+      <div class="tarjeta-eco">
+        <h3>Comercio local</h3>
+        <p>Tiendas, colmados o negocios familiares que operan en El Jiral.</p>
+      </div>
+      <div class="tarjeta-eco">
+        <h3>Empleo</h3>
+        <p>Dónde trabaja la mayoría de las personas adultas de la comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AMBIENTE ================= -->
+<section id="ambiente" class="oscuro">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Aspecto ambiental y geográfico</span>
+      <h2>Nuestro entorno natural</h2>
+    </div>
+
+    <div class="dos-col">
+      <div class="col-label" style="color:#e3b866;">El territorio<br>y sus recursos</div>
+      <!-- EDITAR AQUÍ -->
+      <ul class="lista-detalle borrador" style="color:#dfe6de;">
+        <li style="border-color:rgba(255,255,255,0.15);"><strong style="color:#f7f3e6;">Clima</strong><span style="color:#c7d1c1;">Descripción del clima predominante durante el año.</span></li>
+        <li style="border-color:rgba(255,255,255,0.15);"><strong style="color:#f7f3e6;">Ríos y quebradas</strong><span style="color:#c7d1c1;">Cuerpos de agua cercanos y su uso por la comunidad.</span></li>
+        <li style="border-color:rgba(255,255,255,0.15);"><strong style="color:#f7f3e6;">Vegetación</strong><span style="color:#c7d1c1;">Tipo de bosque o vegetación característica de la zona.</span></li>
+        <li style="border-color:rgba(255,255,255,0.15);"><strong style="color:#f7f3e6;">Riesgos naturales</strong><span style="color:#c7d1c1;">Inundaciones, deslizamientos u otros riesgos conocidos.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CULTURA ================= -->
+<section id="cultura">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Cultura y tradiciones</span>
+      <h2>Lo que nos identifica</h2>
+    </div>
+
+    <!-- EDITAR AQUÍ -->
+    <div class="cultura-grid borrador">
+      <div class="cultura-item">
+        <div class="marca-linea"></div>
+        <h3>Fiestas patronales</h3>
+        <p>Fecha y forma en que se celebra la fiesta principal de la comunidad.</p>
+      </div>
+      <div class="cultura-item">
+        <div class="marca-linea"></div>
+        <h3>Comida típica</h3>
+        <p>Platos que se preparan tradicionalmente en El Jiral.</p>
+      </div>
+      <div class="cultura-item">
+        <div class="marca-linea"></div>
+        <h3>Artesanías y oficios</h3>
+        <p>Trabajos manuales o tradicionales que se conservan en la zona.</p>
+      </div>
+      <div class="cultura-item">
+        <div class="marca-linea"></div>
+        <h3>Historias y leyendas</h3>
+        <p>Relatos que se transmiten de generación en generación en la comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERÍA ================= -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Vida comunitaria</span>
+      <h2>Galería de fotos</h2>
+      <p>Fotos de la comunidad, sus paisajes, actividades y gente. Reemplacen cada recuadro por una foto real cuando la tengan.</p>
+    </div>
+
+    <!-- EDITAR AQUÍ: reemplacen cada .foto-vacia por <img src="..." style="width:100%;aspect-ratio:4/3;object-fit:cover;"> -->
+    <div class="galeria">
+      <figure><div class="foto-vacia">Foto pendiente<br>Paisaje de la comunidad</div><figcaption>Vista de El Jiral</figcaption></figure>
+      <figure><div class="foto-vacia">Foto pendiente<br>Escuela</div><figcaption>C.E.B.G. El Jiral</figcaption></figure>
+      <figure><div class="foto-vacia">Foto pendiente<br>Actividad comunitaria</div><figcaption>Actividad reciente</figcaption></figure>
+      <figure><div class="foto-vacia">Foto pendiente<br>Producción local</div><figcaption>Trabajo agrícola</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOTICIAS ================= -->
+<section id="noticias">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Al día</span>
+      <h2>Noticias y eventos</h2>
+      <p>Aquí se publican avisos, actividades escolares y eventos comunitarios.</p>
+    </div>
+
+    <!-- EDITAR AQUÍ: dupliquen el bloque .noticia para cada nueva publicación -->
+    <div class="noticias borrador">
+      <div class="noticia">
+        <time>Fecha</time>
+        <h3>Título de la noticia o evento</h3>
+        <p>Breve descripción de lo que ocurrió o va a ocurrir en la comunidad.</p>
+      </div>
+      <div class="noticia">
+        <time>Fecha</time>
+        <h3>Título de la noticia o evento</h3>
+        <p>Breve descripción de lo que ocurrió o va a ocurrir en la comunidad.</p>
+      </div>
+      <div class="noticia">
+        <time>Fecha</time>
+        <h3>Título de la noticia o evento</h3>
+        <p>Breve descripción de lo que ocurrió o va a ocurrir en la comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIRECTORIO ================= -->
+<section id="directorio">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Contactos útiles</span>
+      <h2>Directorio comunitario</h2>
+      <p>Autoridades e instituciones a las que la comunidad puede acudir.</p>
+    </div>
+
+    <!-- EDITAR AQUÍ: completen con nombres y datos reales -->
+    <table class="directorio borrador">
+      <thead>
+        <tr><th>Institución / cargo</th><th>Responsable</th><th>Contacto</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Representante de corregimiento</td><td>Nombre pendiente</td><td>Teléfono / lugar</td></tr>
+        <tr><td>Junta comunal</td><td>Nombre pendiente</td><td>Teléfono / lugar</td></tr>
+        <tr><td>C.E.B.G. El Jiral (dirección)</td><td>Nombre pendiente</td><td>Teléfono / lugar</td></tr>
+        <tr><td>Centro / puesto de salud</td><td>Nombre pendiente</td><td>Teléfono / lugar</td></tr>
+        <tr><td>Iglesia(s) de la comunidad</td><td>Nombre pendiente</td><td>Lugar</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= PARTICIPA ================= -->
+<section id="participa" class="oscuro" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Súmate</span>
+      <h2>Ayúdanos a completar este portal</h2>
+      <p style="color:#c7d1c1;">Si tienes fotos, historias o datos sobre El Jiral, compártelos con el equipo del proyecto.</p>
+    </div>
+
+    <div class="participa-caja">
+      <div>
+        <h3 style="color:var(--verde-monte);">Formas de colaborar</h3>
+        <ul class="lista-detalle" style="margin-top:14px;">
+          <li><strong>Fotos y videos</strong><span>De paisajes, actividades o eventos de la comunidad.</span></li>
+          <li><strong>Historias familiares</strong><span>Relatos sobre la fundación o vida en El Jiral.</span></li>
+          <li><strong>Datos y cifras</strong><span>Información que ayude a completar las secciones social y económica.</span></li>
+        </ul>
+      </div>
+
+      <!-- Este formulario es un formato de referencia; no envía datos por sí solo. -->
+      <form onsubmit="event.preventDefault(); alert('Formulario de ejemplo: conecten esto a un correo o formulario de Google cuando el proyecto esté listo.');">
+        <div>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="Tu nombre">
+        </div>
+        <div>
+          <label for="mensaje">Qué quieres compartir</label>
+          <textarea id="mensaje" rows="4" placeholder="Cuéntanos tu idea, historia o dato"></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+        <p class="nota-form">Nota para el equipo: este formulario es de ejemplo. Pueden conectarlo a un Formulario de Google o a un correo real de la escuela.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong style="color:var(--papel);">El Jiral de Colón</strong><br>
+      Portal comunitario en construcción.
+    </div>
+    <div>
+      Proyecto elaborado por estudiantes de 8vo y 9no grado del<br>
+      <a href="#">C.E.B.G. El Jiral</a> · Actualizado en 2026.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
