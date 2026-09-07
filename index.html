@@ -83,12 +83,13 @@
 
   /* ---------- Header ---------- */
   header{
-    background: var(--verde-monte);
+    background-color: var(--verde-monte);
     color: var(--papel);
     position: sticky;
     top:0;
     z-index: 50;
     border-bottom: 3px solid var(--oro);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
   }
   .nav-row{
     display:flex;
@@ -179,7 +180,11 @@
   .hero-art{ display:flex; justify-content:center; }
 
   /* ---------- Contenedor de sección genérico ---------- */
-  section{ padding: 74px 0; border-bottom: 1px solid var(--borde); }
+  section{
+    padding: 74px 0;
+    border-bottom: 1px solid var(--borde);
+    scroll-margin-top: 84px; /* deja espacio para que el header fijo no tape el título al saltar desde el menú */
+  }
   section.oscuro{
     background: var(--verde-monte);
     color: var(--papel);
@@ -240,6 +245,12 @@
     font-family:"Fraunces", serif;
     font-size: 2.1rem;
     color: var(--verde-monte);
+  }
+  .indicador .num.dato-pendiente{
+    font-family:"Work Sans", sans-serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--tinta-suave);
   }
   .indicador .etiqueta{
     color: var(--tinta-suave);
@@ -538,19 +549,19 @@
     <!-- EDITAR AQUÍ: reemplacen los números con datos reales (censo, junta comunal, encuestas) -->
     <div class="indicadores borrador">
       <div class="indicador">
-        <div class="num">—</div>
+        <div class="num dato-pendiente">Dato pendiente</div>
         <div class="etiqueta">Habitantes aproximados</div>
       </div>
       <div class="indicador">
-        <div class="num">—</div>
+        <div class="num dato-pendiente">Dato pendiente</div>
         <div class="etiqueta">Viviendas</div>
       </div>
       <div class="indicador">
-        <div class="num">—</div>
+        <div class="num dato-pendiente">Dato pendiente</div>
         <div class="etiqueta">Estudiantes en el C.E.B.G. El Jiral</div>
       </div>
       <div class="indicador">
-        <div class="num">—</div>
+        <div class="num dato-pendiente">Dato pendiente</div>
         <div class="etiqueta">% con agua potable</div>
       </div>
     </div>
